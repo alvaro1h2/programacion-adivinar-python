@@ -1,0 +1,53 @@
+Programa adivinar_numero_letra
+// Programa para adivinar un valor oculto en un tablero de números y letras.
+
+Start
+	// Declaración de variables
+	Declare Integer tamaño // Representa el tamaño del tablero
+	Declare Array tablero // Representa el tablero de juego
+	Declare Integer fila_secreta, columna_secreta // Representan las coordenadas del valor oculto
+	Declare String valor_secreto // Representa el valor oculto
+	Declare Integer intentos // Representa el número de intentos del jugador
+	Declare Integer fila, columna // Representan las coordenadas ingresadas por el jugador
+	
+	Display "Bienvenido al juego de adivinar números y letras"
+	Display "Ingrese el tamaño del tablero (mínimo 3): "
+	Input tamaño
+	
+	If tamaño < 3 Then
+		Display "El tamaño del tablero debe ser al menos 3."
+	Else
+		// Generar y mostrar el tablero
+		Set tablero = generar_tablero(tamaño)
+		show_board(tablero)
+
+		// Ocultar un valor en el tablero
+		fila_secreta, columna_secreta, valor_secreto = ocultar_valor(tablero)
+		intentos = 0
+
+		While True
+			Display "Fila (1-" + ConvertirACadena(tamaño) + "): "
+			Input fila
+			Display "Columna (1-" + ConvertirACadena(tamaño) + "): "
+			Input columna
+
+			If 0 <= fila - 1 < tamaño And 0 <= columna - 1 < tamaño Then
+				If fila - 1 == fila_secreta And columna - 1 == columna_secreta Then
+					intentos = intentos + 1
+					Display "¡Correcto! Lo adivinaste en " + ConvertirACadena(intentos) + " intentos."
+					show_board(tablero)  // Mostrar el tablero completo después de un acierto
+					Break  // Salir del bucle después de un acierto
+				Else
+					intentos = intentos + 1
+					Display "Incorrecto. Inténtalo de nuevo."
+					shuffle_board(tablero)  // Mezclar el tablero después de un fallo
+					fila_secreta, columna_secreta, valor_secreto = ocultar_valor(tablero)  // Ocultar un nuevo valor aleatorio
+					show_board(tablero)  // Mostrar el tablero actualizado
+					Break  // Salir del bucle después de un fallo
+				End If
+			Else
+				Display "Fuera de rango. Ingresa valores entre 1 y " + ConvertirACadena(tamaño)
+			End If
+		End While
+	End If
+End

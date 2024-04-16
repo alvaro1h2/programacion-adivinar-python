@@ -1,0 +1,15 @@
+Declaraciones iniciales: Se declaran las variables necesarias para el juego, incluyendo el tamaño del tablero, el tablero en sí, las coordenadas y valor del valor oculto, el número de intentos, y las coordenadas ingresadas por el jugador.
+
+Inicio del juego: Se da la bienvenida al jugador y se solicita ingresar el tamaño del tablero. Si el tamaño es menor que 3, se muestra un mensaje de error y se solicita ingresar un tamaño válido.
+
+Generación y muestra del tablero: Se genera un tablero de números y letras utilizando la función generar_tablero y se muestra al jugador utilizando la función show_board.
+
+Ocultar un valor en el tablero: Se oculta un valor aleatorio en el tablero utilizando la función ocultar_valor y se guarda su fila, columna y valor.
+
+Bucle principal del juego: Se ejecuta un bucle mientras el juego esté en curso. En cada iteración, se solicita al jugador ingresar una fila y columna para adivinar el valor oculto.
+
+Verificación de coordenadas: Se verifica que las coordenadas ingresadas por el jugador estén dentro de los límites del tablero. Si no lo están, se muestra un mensaje de error.
+
+Adivinanza correcta: Si las coordenadas ingresadas por el jugador coinciden con las del valor oculto, se muestra un mensaje de éxito junto con el número de intentos realizados, se revela el tablero completo utilizando show_board y se sale del bucle.
+
+Adivinanza incorrecta: Si las coordenadas ingresadas no coinciden con las del valor oculto, se muestra un mensaje de error, se mezcla el tablero utilizando shuffle_board, se oculta un nuevo valor aleatorio utilizando ocultar_valor, se muestra el tablero actualizado y se continúa con la siguiente iteración del bucle.
